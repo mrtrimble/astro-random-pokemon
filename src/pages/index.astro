@@ -21,6 +21,7 @@ const { name, sprites, id } = pokemon;
       <dt>{id}</dt>
       <dd>{name}</dd>
     </dl>
+    <button onclick="window.location.reload();">New Pokémon!</button>
   </main>
 </Layout>
 
@@ -48,11 +49,11 @@ const { name, sprites, id } = pokemon;
     margin: 0;
     height: 100vh;
     width: 100vw;
-		display:grid;
-		place-content: center;
+    display: grid;
+    place-content: center;
     text-align: center;
     font-size: var(--step-2);
-		overflow: hidden;
+    overflow: hidden;
     background-image: linear-gradient(
       0deg,
       hsl(31deg 100% 56%) 0%,
@@ -70,7 +71,7 @@ const { name, sprites, id } = pokemon;
 
   h1 {
     font-size: 5vw;
-		white-space: nowrap;
+    white-space: nowrap;
   }
 
   main {
@@ -83,11 +84,19 @@ const { name, sprites, id } = pokemon;
     align-items: center;
     justify-content: center;
     text-align: center;
+    > * {
+      margin: 0;
+      padding: 0;
+    }
+    > * + * {
+      margin-block-start: 1rem;
+    }
     h1 {
       color: white;
+      text-shadow: 2px 0px 2px #000;
     }
     .logo {
-      width:100%;
+      width: 100%;
       display: flex;
       justify-self: center;
       margin: 0;
@@ -112,16 +121,36 @@ const { name, sprites, id } = pokemon;
       padding-inline: 1rem;
       width: fit-content;
       color: white;
+      text-shadow: 2px 0px 2px #000;
       margin: 0;
       display: flex;
       justify-content: center;
-			transform: translateY(250%);
-			animation: revealText 0.5s cubic-bezier(.43,.06,.37,1.26) forwards;
+      transform: translateY(40px);
+      opacity: 0;
+      animation: revealText 0.5s cubic-bezier(0.43, 0.06, 0.37, 1.26) forwards;
       animation-delay: 5s;
       clip-path: polygon(0% 5%, 5% 5%, 5% 0%, 95% 0%, 95% 05%, 100% 5%, 100% 95%, 95% 95%, 95% 100%, 5% 100%, 5% 95%, 0% 95%);
-			dd{
-				text-transform: uppercase;
-			}
+      dd {
+        text-transform: uppercase;
+        
+      }
+    }
+
+    button{
+      position:absolute;
+      bottom: 0.25rem;
+      right: 0.25rem;
+      background: #BF186C;
+      border: none;
+      padding-block: 1rem;
+      padding-inline: 1rem;
+      color: white;
+      font-family: 'Press Start 2P', cursive;
+      transition: background 0.25s ease;
+      clip-path: polygon(0% 5%, 5% 5%, 5% 0%, 95% 0%, 95% 05%, 100% 5%, 100% 95%, 95% 95%, 95% 100%, 5% 100%, 5% 95%, 0% 95%);
+      &:hover{
+        background: darken(#BF186C, 5%);
+      }
     }
   }
 
@@ -130,9 +159,10 @@ const { name, sprites, id } = pokemon;
       filter: brightness(1);
     }
   }
-	@keyframes revealText {
-		to{
-			transform: translateY(0);
-		}
-	}
+  @keyframes revealText {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 </style>
