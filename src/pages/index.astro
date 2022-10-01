@@ -23,6 +23,13 @@ const typeClass = types[0].type.name;
       <dt>{id}</dt>
       <dd>{name}</dd>
     </dl>
+    <div class="countdown">
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+      <span>4</span>
+      <span>5</span>
+    </div>
     <button onclick="window.location.reload();">New Pokémon!</button>
   </main>
 </Layout>
@@ -356,6 +363,33 @@ const typeClass = types[0].type.name;
     }
   }
 
+  .countdown{
+    font-size: var(--step-2);
+    color: white;
+    span{
+      position:absolute;
+      background: #bf186c;
+      padding:1.2rem;
+      clip-path: polygon(0% 5%, 5% 5%, 5% 0%, 95% 0%, 95% 05%, 100% 5%, 100% 95%, 95% 95%, 95% 100%, 5% 100%, 5% 95%, 0% 95%);
+      animation: countdown 0s linear forwards;
+    }
+    span:nth-child(5){
+      animation-delay: 1s;
+    }
+    span:nth-child(4){
+      animation-delay: 2s;
+    }
+    span:nth-child(3){
+      animation-delay: 3s;
+    }
+    span:nth-child(2){
+      animation-delay: 4s;
+    }
+    span:nth-child(1){
+      animation-delay: 5s;
+    }
+  }
+
   @keyframes reveal {
     to {
       filter: brightness(1);
@@ -365,6 +399,12 @@ const typeClass = types[0].type.name;
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes countdown {
+    to{
+      opacity: 0;
     }
   }
 </style>
