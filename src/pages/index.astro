@@ -8,11 +8,13 @@ let pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}`)
     return data;
   });
 
-const { name, sprites, id } = pokemon;
+const { name, sprites, id, types } = pokemon;
+
+const typeClass = types[0].type.name;
 ---
 
 <Layout title="Random Pokemon!">
-  <main>
+  <main class={typeClass}>
     <h1>Who's that Pokémon?</h1>
     <div class="pokemon">
       <img src={sprites.front_default} alt={name} />
@@ -54,18 +56,219 @@ const { name, sprites, id } = pokemon;
     text-align: center;
     font-size: var(--step-2);
     overflow: hidden;
+  }
+
+  body:has(main.fire) {
     background-image: linear-gradient(
       0deg,
       hsl(31deg 100% 56%) 0%,
-      hsl(21deg 100% 60%) 25%,
-      hsl(10deg 94% 62%) 33%,
-      hsl(357deg 84% 61%) 38%,
-      hsl(345deg 74% 54%) 42%,
-      hsl(335deg 74% 46%) 47%,
-      hsl(325deg 81% 39%) 52%,
-      hsl(314deg 77% 34%) 60%,
-      hsl(297deg 65% 30%) 72%,
-      hsl(274deg 59% 31%) 100%
+      hsl(28deg 90% 54%) 25%,
+      hsl(25deg 81% 52%) 33%,
+      hsl(22deg 72% 50%) 38%,
+      hsl(19deg 70% 47%) 42%,
+      hsl(15deg 69% 44%) 47%,
+      hsl(12deg 67% 41%) 52%,
+      hsl(8deg 66% 38%) 60%,
+      hsl(3deg 65% 35%) 72%,
+      hsl(357deg 69% 31%) 100%
+    );
+  }
+
+  body:has(main.water) {
+    background-image: linear-gradient(
+      0deg,
+      hsl(218deg 100% 56%) 0%,
+      hsl(219deg 88% 54%) 25%,
+      hsl(221deg 77% 51%) 33%,
+      hsl(222deg 71% 49%) 38%,
+      hsl(223deg 70% 46%) 42%,
+      hsl(224deg 69% 43%) 47%,
+      hsl(225deg 68% 40%) 52%,
+      hsl(226deg 68% 37%) 60%,
+      hsl(227deg 68% 34%) 72%,
+      hsl(228deg 69% 31%) 100%
+    );
+  }
+
+  body:has(main.grass) {
+    background-image: linear-gradient(
+      0deg,
+      hsl(120deg 49% 35%) 0%,
+      hsl(122deg 50% 33%) 25%,
+      hsl(123deg 52% 31%) 33%,
+      hsl(125deg 54% 28%) 38%,
+      hsl(126deg 55% 26%) 42%,
+      hsl(127deg 57% 24%) 47%,
+      hsl(129deg 59% 22%) 52%,
+      hsl(130deg 61% 20%) 60%,
+      hsl(131deg 63% 18%) 72%,
+      hsl(132deg 66% 16%) 100%
+    );
+  }
+  body:has(main.normal),
+  body:has(main.ground) {
+    background-image: linear-gradient(
+      0deg,
+      hsl(41deg 31% 38%) 0%,
+      hsl(42deg 31% 34%) 25%,
+      hsl(44deg 32% 31%) 33%,
+      hsl(46deg 33% 28%) 38%,
+      hsl(48deg 34% 25%) 42%,
+      hsl(50deg 35% 22%) 47%,
+      hsl(52deg 37% 19%) 52%,
+      hsl(55deg 39% 16%) 60%,
+      hsl(57deg 42% 13%) 72%,
+      hsl(60deg 48% 11%) 100%
+    );
+  }
+  body:has(main.rock) {
+    background-image: linear-gradient(
+      0deg,
+      hsl(39deg 7% 37%) 0%,
+      hsl(39deg 7% 34%) 25%,
+      hsl(38deg 7% 31%) 33%,
+      hsl(38deg 6% 29%) 38%,
+      hsl(38deg 6% 26%) 42%,
+      hsl(38deg 5% 23%) 47%,
+      hsl(38deg 4% 21%) 52%,
+      hsl(38deg 3% 18%) 60%,
+      hsl(38deg 2% 16%) 72%,
+      hsl(0deg 0% 14%) 100%
+    );
+  }
+  body:has(main.poison) {
+    background-image: linear-gradient(
+      0deg,
+      hsl(256deg 61% 64%) 0%,
+      hsl(258deg 51% 59%) 25%,
+      hsl(260deg 43% 55%) 33%,
+      hsl(262deg 36% 51%) 38%,
+      hsl(264deg 35% 47%) 42%,
+      hsl(266deg 35% 43%) 47%,
+      hsl(268deg 35% 39%) 52%,
+      hsl(270deg 35% 35%) 60%,
+      hsl(272deg 35% 31%) 72%,
+      hsl(274deg 35% 28%) 100%
+    );
+  }
+  body:has(main.psychic) {
+    background-image: linear-gradient(
+      0deg,
+      hsl(256deg 85% 43%) 0%,
+      hsl(261deg 83% 45%) 25%,
+      hsl(264deg 82% 46%) 33%,
+      hsl(268deg 80% 48%) 38%,
+      hsl(271deg 78% 49%) 42%,
+      hsl(273deg 79% 51%) 47%,
+      hsl(276deg 82% 52%) 52%,
+      hsl(278deg 86% 54%) 60%,
+      hsl(281deg 90% 56%) 72%,
+      hsl(283deg 94% 57%) 100%
+    );
+  }
+  body:has(main.fighting) {
+    background-image: linear-gradient(
+      0deg,
+      hsl(1deg 69% 53%) 0%,
+      hsl(2deg 61% 50%) 25%,
+      hsl(4deg 60% 47%) 33%,
+      hsl(5deg 59% 44%) 38%,
+      hsl(6deg 59% 41%) 42%,
+      hsl(7deg 58% 38%) 47%,
+      hsl(8deg 57% 36%) 52%,
+      hsl(9deg 56% 33%) 60%,
+      hsl(10deg 54% 30%) 72%,
+      hsl(11deg 52% 28%) 100%
+    );
+  }
+  body:has(main.bug) {
+    background-image: linear-gradient(
+      0deg,
+      hsl(73deg 69% 34%) 0%,
+      hsl(70deg 71% 33%) 25%,
+      hsl(67deg 74% 32%) 33%,
+      hsl(64deg 77% 31%) 38%,
+      hsl(62deg 79% 31%) 42%,
+      hsl(59deg 81% 31%) 47%,
+      hsl(56deg 83% 31%) 52%,
+      hsl(54deg 85% 32%) 60%,
+      hsl(52deg 85% 32%) 72%,
+      hsl(50deg 85% 33%) 100%
+    );
+  }
+  body:has(main.dragon) {
+    background-image: linear-gradient(
+      0deg,
+      hsl(225deg 69% 53%) 0%,
+      hsl(236deg 60% 57%) 25%,
+      hsl(247deg 54% 56%) 33%,
+      hsl(258deg 51% 53%) 38%,
+      hsl(267deg 47% 50%) 42%,
+      hsl(276deg 50% 47%) 47%,
+      hsl(285deg 54% 43%) 52%,
+      hsl(293deg 59% 39%) 60%,
+      hsl(301deg 68% 35%) 72%,
+      hsl(307deg 85% 33%) 100%
+    );
+  }
+  body:has(main.fairy) {
+    background-image: linear-gradient(
+      0deg,
+      hsl(269deg 69% 53%) 0%,
+      hsl(274deg 65% 51%) 25%,
+      hsl(279deg 64% 49%) 33%,
+      hsl(284deg 66% 47%) 38%,
+      hsl(288deg 68% 45%) 42%,
+      hsl(292deg 71% 43%) 47%,
+      hsl(296deg 73% 40%) 52%,
+      hsl(300deg 76% 39%) 60%,
+      hsl(304deg 80% 39%) 72%,
+      hsl(307deg 83% 38%) 100%
+    );
+  }
+  body:has(main.electric) {
+    background-image: linear-gradient(
+      0deg,
+      hsl(46deg 71% 56%) 0%,
+      hsl(47deg 60% 52%) 25%,
+      hsl(49deg 55% 48%) 33%,
+      hsl(51deg 54% 44%) 38%,
+      hsl(52deg 53% 40%) 42%,
+      hsl(54deg 53% 36%) 47%,
+      hsl(56deg 52% 33%) 52%,
+      hsl(58deg 51% 29%) 60%,
+      hsl(60deg 50% 26%) 72%,
+      hsl(62deg 50% 23%) 100%
+    );
+  }
+  body:has(main.ghost) {
+    background-image: linear-gradient(
+      0deg,
+      hsl(0deg 0% 0%) 0%,
+      hsl(261deg 100% 10%) 25%,
+      hsl(261deg 100% 11%) 33%,
+      hsl(260deg 86% 13%) 38%,
+      hsl(259deg 74% 15%) 42%,
+      hsl(260deg 67% 17%) 47%,
+      hsl(260deg 62% 18%) 52%,
+      hsl(261deg 57% 20%) 60%,
+      hsl(261deg 53% 22%) 72%,
+      hsl(261deg 50% 23%) 100%
+    );
+  }
+  body:has(main.ice) {
+    background-image: linear-gradient(
+      0deg,
+      hsl(0deg 0% 100%) 0%,
+      hsl(250deg 100% 96%) 25%,
+      hsl(249deg 100% 93%) 33%,
+      hsl(247deg 100% 89%) 38%,
+      hsl(246deg 100% 86%) 42%,
+      hsl(244deg 100% 83%) 47%,
+      hsl(242deg 100% 79%) 52%,
+      hsl(239deg 100% 76%) 60%,
+      hsl(236deg 100% 71%) 72%,
+      hsl(231deg 99% 64%) 100%
     );
   }
 
@@ -76,7 +279,7 @@ const { name, sprites, id } = pokemon;
 
   main {
     --container-width: 40ch;
-
+    background-image: var(--backgroundColor, blue);
     width: min(var(--container-width), 100% - 3rem);
     margin-inline: auto;
     display: flex;
@@ -132,15 +335,14 @@ const { name, sprites, id } = pokemon;
       clip-path: polygon(0% 5%, 5% 5%, 5% 0%, 95% 0%, 95% 05%, 100% 5%, 100% 95%, 95% 95%, 95% 100%, 5% 100%, 5% 95%, 0% 95%);
       dd {
         text-transform: uppercase;
-        
       }
     }
 
-    button{
-      position:absolute;
+    button {
+      position: absolute;
       bottom: 0.25rem;
       right: 0.25rem;
-      background: #BF186C;
+      background: #bf186c;
       border: none;
       padding-block: 1rem;
       padding-inline: 1rem;
@@ -148,8 +350,8 @@ const { name, sprites, id } = pokemon;
       font-family: 'Press Start 2P', cursive;
       transition: background 0.25s ease;
       clip-path: polygon(0% 5%, 5% 5%, 5% 0%, 95% 0%, 95% 05%, 100% 5%, 100% 95%, 95% 95%, 95% 100%, 5% 100%, 5% 95%, 0% 95%);
-      &:hover{
-        background: darken(#BF186C, 5%);
+      &:hover {
+        background: darken(#bf186c, 5%);
       }
     }
   }
