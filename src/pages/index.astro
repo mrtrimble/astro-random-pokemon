@@ -35,6 +35,7 @@ const typeClass = types[0].type.name;
 </Layout>
 
 <style lang="scss" is:global>
+  @import url('https://gist.githubusercontent.com/Asjas/4b0736108d56197fce0ec9068145b421/raw/f4cfe9d584db5b69e3731314f297920865245742/reset.css');
   @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
   :root {
@@ -61,7 +62,7 @@ const typeClass = types[0].type.name;
     display: grid;
     place-content: center;
     text-align: center;
-    font-size: var(--step-2);
+    font-size: var(--step-1);
     overflow: hidden;
   }
 
@@ -313,13 +314,13 @@ const typeClass = types[0].type.name;
       padding: 0;
     }
     .pokemon {
-      height: 400px;
-      width: 400px;
+      height: 300px;
+      width: 100%;
       display: flex;
-      justify-self: center;
+      align-items: center;
+      justify-content: center;
       img {
         height: 100%;
-        width: 100%;
         filter: brightness(0);
         animation: reveal 0.5s ease forwards;
         animation-delay: 5s;
@@ -366,6 +367,10 @@ const typeClass = types[0].type.name;
   .countdown{
     font-size: var(--step-2);
     color: white;
+    width: 100%;
+
+    display:flex;
+    justify-content: center;
     span{
       position:absolute;
       background: #bf186c;
