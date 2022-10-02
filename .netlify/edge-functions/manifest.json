@@ -1,0 +1,9 @@
+{
+  "functions": [
+    {
+      "function": "entry",
+      "path": "/"
+    }
+  ],
+  "version": 1
+}

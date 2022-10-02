@@ -10,9 +10,11 @@ const { title } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href="https://astro-pokemon.netlify.app" />
+		<meta name="description" content="An experiment with server-side rendering Astro using the PokéAPI!"/>
 		<title>{title}</title>
 	</head>
 	<body>
