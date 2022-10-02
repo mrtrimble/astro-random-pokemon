@@ -1,34 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
 const randomPokemon = Math.floor(Math.random() * 150) + 1;
+let error = false;
 
 let pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}`)
   .then((response) => response.json())
   .then((data) => {
     return data;
+  })
+  .catch(() => {
+    error = true;
   });
 
-const { name, sprites, id, types } = pokemon;
+let name, sprite, id, type;
 
-const typeClass = types[0].type.name;
+if (pokemon) {
+  name = pokemon.name;
+  id = pokemon.id;
+  sprite = pokemon.sprites.front_default;
+  type = pokemon.types[0].type.name;
+} else {
+  name = 'missingo';
+  sprite = '/MissingNo.png';
+  type = 'none';
+  id = '000';
+}
 ---
 
 <Layout title="Random Pokemon!">
-  <main class={typeClass}>
+  <main class={type}>
     <h1>Who's that Pokémon?</h1>
     <div class="pokemon">
-      <img src={sprites.front_default} alt={name} />
+      <img src={sprite} alt={name} />
     </div>
     <dl>
       <dt>{id}</dt>
       <dd>{name}</dd>
     </dl>
     <div class="countdown">
-      <span>1</span>
-      <span>2</span>
-      <span>3</span>
-      <span>4</span>
-      <span>5</span>
+      {
+        error ? <span class="error">Error!</span> : (
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+        )
+      }
     </div>
     <button onclick="window.location.reload();">New Pokémon!</button>
   </main>
@@ -390,6 +408,9 @@ const typeClass = types[0].type.name;
       padding: 1.2rem;
       clip-path: polygon(0% 5%, 5% 5%, 5% 0%, 95% 0%, 95% 05%, 100% 5%, 100% 95%, 95% 95%, 95% 100%, 5% 100%, 5% 95%, 0% 95%);
       animation: countdown 0s linear forwards;
+    }
+    span:is(.error){
+      animation: unset;
     }
     span:nth-child(5) {
       animation-delay: 1s;
